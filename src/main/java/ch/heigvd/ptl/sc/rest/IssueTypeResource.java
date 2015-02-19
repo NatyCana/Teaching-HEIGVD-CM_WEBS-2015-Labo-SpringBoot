@@ -6,7 +6,6 @@ import ch.heigvd.ptl.sc.model.IssueType;
 
 import ch.heigvd.ptl.sc.persistence.IssueTypeRepository;
 import ch.heigvd.ptl.sc.to.IssueTypeTO;
-import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -21,66 +20,65 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-@Path("/IssueTypeResource")
+@Path("/issueTypes")
 public class IssueTypeResource {
-	@Autowired
-	private IssueTypeRepository issueTypeRepository;
-	
-	@Autowired
-	private IssueTypeConverter issueTypeConverter;
-    private List<IssueType> issueType;
 
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response findAll() {
-		return Response.ok(issueTypeConverter.convertSourceToTarget(issueTypeRepository.findAll())).build();
-	}
+    @Autowired
+    private IssueTypeRepository issueTypeRepository;
+    @Autowired
+    private IssueTypeConverter issueTypeConverter;
 
-	@POST
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response create(IssueTypeTO issueTypeTO) {
-		IssueType user = issueTypeRepository.save(issueTypeConverter.convertTargetToSource(issueTypeTO));
-		
-		return Response.ok(issueTypeConverter.convertSourceToTarget(issueType)).status(201).build();
-	}
-	
-	@GET
-	@Path("{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response read(@PathParam("id") String id) {
-		IssueType issueType = issueTypeRepository.findOne(id);
-		
-		if (issueType == null) {
-			throw new CityEngagementException(404, "Model not found.");
-		}
-		
-		return Response.ok(issueTypeConverter.convertSourceToTarget(issueType)).build();
-	}
-	
-	@PUT
-	@Path("{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response update(@PathParam("id") String id, IssueTypeTO issueTypeTO) {
-		IssueType issueType = issueTypeRepository.findOne(id);
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response findAll() {
+        return Response.ok(issueTypeConverter.convertSourceToTarget(issueTypeRepository.findAll())).build();
+    }
 
-		if (issueType == null) {
-			throw new CityEngagementException(404, "Model not found.");
-		}
-		
-		issueTypeConverter.fillSourceFromTarget(issueType, issueTypeTO);
-		
-		issueType = issueTypeRepository.save(issueType);
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response create(IssueTypeTO issueTypeTO) {
+        IssueType issueType = issueTypeRepository.save(issueTypeConverter.convertTargetToSource(issueTypeTO));
 
-		return Response.ok(issueTypeConverter.convertSourceToTarget(issueType)).build();
-	}
+        return Response.ok(issueTypeConverter.convertSourceToTarget(issueType)).status(201).build();
+    }
 
-	@DELETE
-	@Path("/{id}")
-	public Response delete(@PathParam("id") String id) {
-		issueTypeRepository.delete(id);
-		return Response.ok().status(204).build();
-	}
+    @GET
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response read(@PathParam("id") String id) {
+        IssueType issueType = issueTypeRepository.findOne(id);
+
+        if (issueType == null) {
+            throw new CityEngagementException(404, "Model not found.");
+        }
+
+        return Response.ok(issueTypeConverter.convertSourceToTarget(issueType)).build();
+    }
+
+    @PUT
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response update(@PathParam("id") String id, IssueTypeTO issueTypeTO) {
+        IssueType issueType = issueTypeRepository.findOne(id);
+
+        if (issueType == null) {
+            throw new CityEngagementException(404, "Model not found.");
+        }
+
+        issueTypeConverter.fillSourceFromTarget(issueType, issueTypeTO);
+
+        issueType = issueTypeRepository.save(issueType);
+
+        return Response.ok(issueTypeConverter.convertSourceToTarget(issueType)).build();
+    }
+
+    @DELETE
+    @Path("/{id}")
+    public Response delete(@PathParam("id") String id) {
+        issueTypeRepository.delete(id);
+        return Response.ok().status(204).build();
+    }
 }
