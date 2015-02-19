@@ -9,6 +9,9 @@ The implementation is done with:
 - [MongoDB](http://www.mongodb.org/)
 - [Jersey](https://jersey.java.net/)
 
+## Group
+Maya Jeanmonod et Natalie Canonica
+
 ## Requirements
 
 - Java 1.7+
