@@ -13,7 +13,6 @@ public class IssueType {
 	private String description;
 	
 
-	protected List<String> roles;
 	
 	public String getShortName() {
 		return shortName;
