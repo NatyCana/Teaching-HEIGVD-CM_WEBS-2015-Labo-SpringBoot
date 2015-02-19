@@ -1,9 +1,7 @@
 package ch.heigvd.ptl.sc.converter;
 
 import ch.heigvd.ptl.sc.model.IssueType;
-
 import ch.heigvd.ptl.sc.to.IssueTypeTO;
-
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
