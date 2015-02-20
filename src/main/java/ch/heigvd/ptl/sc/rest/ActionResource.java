@@ -4,6 +4,8 @@ import ch.heigvd.ptl.sc.CityEngagementException;
 import ch.heigvd.ptl.sc.persistence.ActionRepository;
 import ch.heigvd.ptl.sc.converter.ActionConverter;
 import ch.heigvd.ptl.sc.model.Action;
+import ch.heigvd.ptl.sc.model.User;
+import ch.heigvd.ptl.sc.persistence.UserRepository;
 import ch.heigvd.ptl.sc.to.ActionTO;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -24,6 +26,9 @@ public class ActionResource {
 	@Autowired
 	private ActionRepository actionRepository;
 	
+        @Autowired
+        private UserRepository userRepository;
+        
 	@Autowired
 	private ActionConverter actionConverter;
 
@@ -38,8 +43,12 @@ public class ActionResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response create(ActionTO actionTO) {
-		Action action = actionRepository.save(actionConverter.convertTargetToSource(actionTO));
+            User user = userRepository.findOne(actionTO.getAuthorId());
+            
+            	Action action = actionRepository.save(actionConverter.convertTargetToSource(actionTO));
 		
+                action.setAuthor(user);
+                
 		return Response.ok(actionConverter.convertSourceToTarget(action)).status(201).build();
 	}
 	

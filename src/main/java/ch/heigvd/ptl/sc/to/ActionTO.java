@@ -1,7 +1,5 @@
 package ch.heigvd.ptl.sc.to;
 
-import ch.heigvd.ptl.sc.model.User;
-
 
 public class ActionTO {
 	
@@ -9,7 +7,7 @@ public class ActionTO {
 	
 	private String actionName;
 	private String description;
-	private UserTO author;
+        private String authorId;
 
     /**
      * @return the id
@@ -56,15 +54,19 @@ public class ActionTO {
     /**
      * @return the author
      */
-    public UserTO getAuthor() {
-        return author;
+
+    /**
+     * @return the authorId
+     */
+    public String getAuthorId() {
+        return authorId;
     }
 
     /**
-     * @param author the author to set
+     * @param authorId the authorId to set
      */
-    public void setAuthor(UserTO author) {
-        this.author = author;
+    public void setAuthorId(String authorId) {
+        this.authorId = authorId;
     }
 
 	
