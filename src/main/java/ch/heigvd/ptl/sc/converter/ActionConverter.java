@@ -47,14 +47,13 @@ public class ActionConverter {
 		target.setId(source.getId());
 		target.setActionName(source.getActionName());
 		target.setDescription(source.getDescription());
-                
+                target.setAuthorId(source.getAuthor().getId());
                 
 	}
 
 	public void fillSourceFromTarget(Action source, ActionTO target) {
 		source.setActionName(target.getActionName());
 		source.setDescription(target.getDescription());
-		//source.setAuthor(authorConverter.convertTargetToSource(target.getAuthor()));
 
 		
 	}

@@ -23,70 +23,69 @@ import org.springframework.stereotype.Component;
 @Component
 @Path("/actions")
 public class ActionResource {
-	@Autowired
-	private ActionRepository actionRepository;
-	
-        @Autowired
-        private UserRepository userRepository;
-        
-	@Autowired
-	private ActionConverter actionConverter;
 
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response findAll() {
-		return Response.ok(actionConverter.convertSourceToTarget(actionRepository.findAll())).build();
-	}
+    @Autowired
+    private ActionRepository actionRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private ActionConverter actionConverter;
 
-	@POST
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response create(ActionTO actionTO) {
-            User user = userRepository.findOne(actionTO.getAuthorId());
-            
-            	Action action = actionRepository.save(actionConverter.convertTargetToSource(actionTO));
-		
-                action.setAuthor(user);
-                
-		return Response.ok(actionConverter.convertSourceToTarget(action)).status(201).build();
-	}
-	
-	@GET
-	@Path("{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response read(@PathParam("id") String id) {
-		Action action = actionRepository.findOne(id);
-		
-		if (action == null) {
-			throw new CityEngagementException(404, "Model not found.");
-		}
-		
-		return Response.ok(actionConverter.convertSourceToTarget(action)).build();
-	}
-	
-	@PUT
-	@Path("{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response update(@PathParam("id") String id, ActionTO actionTO) {
-		Action action = actionRepository.findOne(id);
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response findAll() {
+        return Response.ok(actionConverter.convertSourceToTarget(actionRepository.findAll())).build();
+    }
 
-		if (action == null) {
-			throw new CityEngagementException(404, "Model not found.");
-		}
-		
-		actionConverter.fillSourceFromTarget(action, actionTO);
-		
-		action = actionRepository.save(action);
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response create(ActionTO actionTO) {
+        User user = userRepository.findOne(actionTO.getAuthorId());
 
-		return Response.ok(actionConverter.convertSourceToTarget(action)).build();
-	}
+        Action action = actionRepository.save(actionConverter.convertTargetToSource(actionTO));
 
-	@DELETE
-	@Path("/{id}")
-	public Response delete(@PathParam("id") String id) {
-		actionRepository.delete(id);
-		return Response.ok().status(204).build();
-	}
+        action.setAuthor(user);
+
+        return Response.ok(actionConverter.convertSourceToTarget(action)).status(201).build();
+    }
+
+    @GET
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response read(@PathParam("id") String id) {
+        Action action = actionRepository.findOne(id);
+
+        if (action == null) {
+            throw new CityEngagementException(404, "Model not found.");
+        }
+
+        return Response.ok(actionConverter.convertSourceToTarget(action)).build();
+    }
+
+    @PUT
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response update(@PathParam("id") String id, ActionTO actionTO) {
+        Action action = actionRepository.findOne(id);
+
+        if (action == null) {
+            throw new CityEngagementException(404, "Model not found.");
+        }
+
+        actionConverter.fillSourceFromTarget(action, actionTO);
+
+        action = actionRepository.save(action);
+
+        return Response.ok(actionConverter.convertSourceToTarget(action)).build();
+    }
+
+    @DELETE
+    @Path("/{id}")
+    public Response delete(@PathParam("id") String id) {
+        actionRepository.delete(id);
+        return Response.ok().status(204).build();
+    }
 }

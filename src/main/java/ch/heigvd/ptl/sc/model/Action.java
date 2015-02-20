@@ -55,14 +55,14 @@ public class Action {
     }
 
     /**
-     * @return the author
+     * @return the authorId
      */
     public User getAuthor() {
         return author;
     }
 
     /**
-     * @param author the author to set
+     * @param authorId the authorId to set
      */
     public void setAuthor(User author) {
         this.author = author;
