@@ -1,0 +1,5 @@
+heroku mongolab
+
+dbname: heroku_app34144730
+host:  ds045031.mongolab.com
+port: 45031
