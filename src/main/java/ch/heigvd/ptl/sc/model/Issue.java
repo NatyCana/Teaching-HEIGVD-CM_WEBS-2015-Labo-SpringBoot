@@ -1,18 +1,21 @@
 package ch.heigvd.ptl.sc.model;
 
-import java.util.List;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Issue {
 	@Id
 	private String id;
-	
+	@DBRef
 	private User author;
+        @DBRef
 	private IssueType type;
 	private String description;
         private String coords;
+        @DBRef
+        private Action action;
 
     /**
      * @return the id
@@ -82,6 +85,20 @@ public class Issue {
      */
     public void setCoords(String coords) {
         this.coords = coords;
+    }
+
+    /**
+     * @return the action
+     */
+    public Action getAction() {
+        return action;
+    }
+
+    /**
+     * @param action the action to set
+     */
+    public void setAction(Action action) {
+        this.action = action;
     }
         
 

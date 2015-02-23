@@ -6,10 +6,11 @@ import ch.heigvd.ptl.sc.model.User;
 public class IssueTO {
 	private String id;
 	
-	private User author;
-	private IssueType type;
+	private String authorId;
+	private String typeId;
 	private String description;
         private String coords;
+        private String actionId;
 
     /**
      * @return the id
@@ -26,31 +27,31 @@ public class IssueTO {
     }
 
     /**
-     * @return the author
+     * @return the authorId
      */
-    public User getAuthor() {
-        return author;
+    public String getAuthorId() {
+        return authorId;
     }
 
     /**
-     * @param author the author to set
+     * @param authorId the authorId to set
      */
-    public void setAuthor(User author) {
-        this.author = author;
+    public void setAuthorId(String authorId) {
+        this.authorId = authorId;
     }
 
     /**
-     * @return the type
+     * @return the typeId
      */
-    public IssueType getType() {
-        return type;
+    public String getTypeId() {
+        return typeId;
     }
 
     /**
-     * @param type the type to set
+     * @param typeId the typeId to set
      */
-    public void setType(IssueType type) {
-        this.type = type;
+    public void setTypeId(String typeId) {
+        this.typeId = typeId;
     }
 
     /**
@@ -80,6 +81,22 @@ public class IssueTO {
     public void setCoords(String coords) {
         this.coords = coords;
     }
+
+    /**
+     * @return the actionId
+     */
+    public String getActionId() {
+        return actionId;
+    }
+
+    /**
+     * @param actionId the actionId to set
+     */
+    public void setActionId(String actionId) {
+        this.actionId = actionId;
+    }
+
+
         
 
 }

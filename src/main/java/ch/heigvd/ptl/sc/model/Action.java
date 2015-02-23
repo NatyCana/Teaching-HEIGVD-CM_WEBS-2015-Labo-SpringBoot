@@ -1,6 +1,7 @@
 package ch.heigvd.ptl.sc.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -10,6 +11,7 @@ public class Action {
 	
 	private String actionName;
 	private String description;
+        @DBRef
 	private User author;
 
     /**

@@ -43,10 +43,11 @@ public class ActionResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response create(ActionTO actionTO) {
         User user = userRepository.findOne(actionTO.getAuthorId());
-
+        
         Action action = actionRepository.save(actionConverter.convertTargetToSource(actionTO));
 
         action.setAuthor(user);
+        actionRepository.save(action);
 
         return Response.ok(actionConverter.convertSourceToTarget(action)).status(201).build();
     }

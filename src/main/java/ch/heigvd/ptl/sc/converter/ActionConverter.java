@@ -9,52 +9,55 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ActionConverter {
+
     @Autowired
     private UserConverter authorConverter;
-	public final List<ActionTO> convertSourceToTarget(List<Action> sources) {
-		List<ActionTO> results = new ArrayList<>();
-		
-		for (Action source : sources) {
-			results.add(convertSourceToTarget(source));
-		}
-		
-		return results;
-	}
 
-	public final ActionTO convertSourceToTarget(Action source) {
-		ActionTO target = new ActionTO();
-		fillTargetFromSource(target, source);
-		return target;
-	}
-	
-	public final List<Action> convertTargetToSource(List<ActionTO> targets) {
-		List<Action> results = new ArrayList<>();
-		
-		for (ActionTO target : targets) {
-			results.add(convertTargetToSource(target));
-		}
-		
-		return results;
-	}
+    public final List<ActionTO> convertSourceToTarget(List<Action> sources) {
+        List<ActionTO> results = new ArrayList<>();
 
-	public final Action convertTargetToSource(ActionTO target) {
-		Action source = new Action();
-		fillSourceFromTarget(source, target);
-		return source;
-	}
+        for (Action source : sources) {
+            results.add(convertSourceToTarget(source));
+        }
 
-	public void fillTargetFromSource(ActionTO target, Action source) {
-		target.setId(source.getId());
-		target.setActionName(source.getActionName());
-		target.setDescription(source.getDescription());
-                target.setAuthorId(source.getAuthor().getId());
-                
-	}
+        return results;
+    }
 
-	public void fillSourceFromTarget(Action source, ActionTO target) {
-		source.setActionName(target.getActionName());
-		source.setDescription(target.getDescription());
+    public final ActionTO convertSourceToTarget(Action source) {
+        ActionTO target = new ActionTO();
+        fillTargetFromSource(target, source);
+        return target;
+    }
 
-		
-	}
+    public final List<Action> convertTargetToSource(List<ActionTO> targets) {
+        List<Action> results = new ArrayList<>();
+
+        for (ActionTO target : targets) {
+            results.add(convertTargetToSource(target));
+        }
+
+        return results;
+    }
+
+    public final Action convertTargetToSource(ActionTO target) {
+        Action source = new Action();
+        fillSourceFromTarget(source, target);
+        return source;
+    }
+
+    public void fillTargetFromSource(ActionTO target, Action source) {
+        target.setId(source.getId());
+        target.setActionName(source.getActionName());
+        target.setDescription(source.getDescription());
+        target.setAuthorId(source.getAuthor().getId());
+
+    }
+
+    public void fillSourceFromTarget(Action source, ActionTO target) {
+        source.setActionName(target.getActionName());
+        source.setDescription(target.getDescription());
+        
+
+
+    }
 }
