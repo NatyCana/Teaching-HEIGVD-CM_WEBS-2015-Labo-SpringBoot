@@ -1,8 +1,5 @@
 package ch.heigvd.ptl.sc.to;
 
-import ch.heigvd.ptl.sc.model.IssueType;
-import ch.heigvd.ptl.sc.model.User;
-
 public class IssueTO {
 	private String id;
 	
