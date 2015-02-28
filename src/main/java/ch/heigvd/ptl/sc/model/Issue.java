@@ -1,4 +1,8 @@
-package ch.heigvd.ptl.sc.model;
+/*
+ * Developped at Heig-VD.ch during the WebService lecture
+ * Authors: Natalie Canonica, Maya Jeanmonod
+ * Date: 18-feb-2015
+ */package ch.heigvd.ptl.sc.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;

@@ -11,6 +11,7 @@ The implementation is done with:
 
 ## Group
 Maya Jeanmonod et Natalie Canonica
+[app heroku][heroku] 
 
 ## Requirements
 
@@ -70,3 +71,7 @@ The appliation is runing on `http://localhost:8080`. You should be able to acces
 	- Set the environment: `heroku config:set SB_ENV=production`
 7. Finally, you can push your code to Heroku
 	- cmd: `git push heroku master`
+
+## Heroku Link
+
+[heroku]: https://vast-crag-5391.herokuapp.com/ 
